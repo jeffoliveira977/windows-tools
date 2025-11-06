@@ -23,10 +23,8 @@ function Download-File {
     try {
         Invoke-WebRequest -Uri $Url -OutFile $OutFile -UseBasicParsing -TimeoutSec 300 | Out-Null
         if (Test-Path $OutFile) {
-            Log-ToFile -Message "$Name baixado com sucesso." -Type "SUCCESS"
             return $true
-        }
-        else {
+        } else {
             Log-ToFile -Message "Arquivo $Name não foi criado após download." -Type "ERROR"
             return $false
         }
@@ -58,17 +56,15 @@ function Install-Program {
          $process = Start-Process -FilePath $exe -ArgumentList $args -Wait -PassThru -WindowStyle Hidden
 
         if ($process.ExitCode -eq 0 -or $process.ExitCode -eq 3010) {
-            Log-ToFile -Message "$Name instalado com sucesso (ExitCode: $($process.ExitCode))." -Type "SUCCESS"
-        }
-        else {
-            Log-ToFile -Message "$Name falhou na instalação (ExitCode: $($process.ExitCode))." -Type "ERROR"
+            Log-ToFile -Message "$Name instalado com sucesso." -Type "SUCCESS"
+        } else {
+            Log-ToFile -Message "$Name falhou na instalação." -Type "ERROR"
         }
     }
     else {
-        Log-ToFile -Message "Download falhou. instalação de $Name abortada." -Type "ERROR"
+        Log-ToFile -Message "Download falhou. Instalação de $Name abortada." -Type "ERROR"
     }
 }
-
 
 Install-Program `
     -Name "Google Chrome" `

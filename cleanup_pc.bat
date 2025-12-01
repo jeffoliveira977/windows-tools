@@ -15,8 +15,7 @@ if %errorLevel% neq 0 (
     exit /b 1
 )
 
-CHOICE /C SN /M "A lixeira sera esvaziada e os navegadores serao fechados. Verifique se tem algo para salvar antes de prosseguir. Deseja prosseguir com a operacao? (S/N)"
-
+CHOICE /C SN /M "A lixeira será esvaziada e todos os navegadores serão fechados. Certifique-se de salvar seu trabalho antes de continuar. Deseja prosseguir com a operação? (S/N)"
 if %errorLevel% 2 exit /b 1
 
 echo ===============================================
@@ -201,4 +200,5 @@ echo.
 echo ===============================================
 
 pause
+
 exit /b 0
